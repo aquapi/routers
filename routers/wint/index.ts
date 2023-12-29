@@ -9,9 +9,5 @@ wint.radixOptions.parsePath = false;
 
 export default {
     register: (...args) => wint.put(...args),
-    build: () => {
-        const f = wint.build().find;
-        console.log(wint.matchers['PUT'][1].toString());
-        return f;
-    }
+    build: () => wint.build().find
 } as Exports;
