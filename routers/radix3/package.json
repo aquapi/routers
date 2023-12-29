@@ -1,0 +1,6 @@
+{
+    "dependencies": {
+        "radix3": "latest"
+    },
+    "name": "radix3"
+}

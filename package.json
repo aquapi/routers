@@ -10,9 +10,11 @@
         "typescript": "^5.0.0"
     },
     "dependencies": {
+        "radix3": "latest",
         "wint-js": "latest"
     },
     "scripts": {
-        "bench": "bun src/index.ts"
+        "bench": "bun src/index.ts",
+        "deps": "bun src/index.ts install"
     }
 }

@@ -8,18 +8,18 @@ export default {
 
     "Long path": {
         expect: 2,
-        route: ['POST', '/areallylongpath', 2]
+        route: ['POST', '/areally/long/path/actually', 2]
     },
 
     "URL params": {
         expect: 3,
-        route: ['PUT', '/user/id/:id', 3],
-        path: '/user/id/90'
+        route: ['PUT', '/user/:name', 3],
+        path: '/user/reve'
     },
 
     "Wildcards": {
         expect: 4,
-        route: ['GET', '/wild/*', 4],
-        path: '/wild/90'
+        route: ['GET', '/wildcard/and/sth/else/*', 4],
+        path: '/wildcard/and/sth/else/90'
     }
 } as Tests;

@@ -6,6 +6,7 @@ export interface Exports {
 export interface State {
     frameworks: Record<string, Exports>;
     dependencies: Record<string, string>;
+    func: Record<string, (c: Context) => number>;
 }
 
 export interface Package {
