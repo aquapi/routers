@@ -11,10 +11,11 @@
     },
     "dependencies": {
         "radix3": "latest",
-        "wint-js": "latest"
+        "wint-js": "1.2.3"
     },
     "scripts": {
-        "bench": "bun src/index.ts",
+        "bench": "BUN_JSC_jitPolicyScale=0.0 BUN_JSC_thresholdForOptimizeSoon=0 BUN_JSC_thresholdForJITSoon=0 bun src/index.ts",
+        "bench:jitless": "BUN_JSC_UseJit=0 bun src/index.ts",
         "deps": "bun src/index.ts install"
     }
 }
