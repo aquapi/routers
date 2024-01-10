@@ -1,20 +1,16 @@
 import { createRouter } from 'radix3';
-import type { Exports } from '../../src/types';
+import type { Exports, Store } from '../../src/types';
 
-const routes: Record<string, Record<string, number>> = {};
+const routes: Record<string, Store> = {};
 
 export default {
-    register: (method: string, path: string, value: number) => {
-        routes[path] ??= {};
-        routes[path][method] = value;
+    register: (...args) => {
+        routes[args[0]] = args[1];
     },
 
     build: () => {
         const router = createRouter({ routes });
 
-        return c => {
-            const m = router.lookup(c.url);
-            return m === null ? null : (c.method in m ? m[c.method] : null);
-        }
+        return c => router.lookup(c.url);
     }
 } as Exports;

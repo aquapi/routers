@@ -1,12 +1,19 @@
+export type Store = number[];
+export type Expect = number;
+
+export interface Handler {
+    (c: Context): Store;
+}
+
 export interface Exports {
-    register(method: string, path: string, value: number): any;
-    build(): (c: Context) => number;
+    register(...route: Route): any;
+    build(): Handler;
 }
 
 export interface State {
     frameworks: Record<string, Exports>;
     dependencies: Record<string, string>;
-    func: Record<string, (c: Context) => number>;
+    func: Record<string, Handler>;
 }
 
 export interface Package {
@@ -14,15 +21,15 @@ export interface Package {
     name: string;
 }
 
-export type Route = [method: string, path: string, value: number];
+export type Route = [path: string, value: Store];
 
 export interface Test {
     route: Route;
 
     /**
-     * Expected result
+     * Expected result (in this case it is array length)
      */
-    expect: number;
+    expect: Expect;
 
     /**
      * Path to test for dynamic route patterns
@@ -33,6 +40,5 @@ export interface Test {
 export interface Tests extends Record<string, Test> { }
 
 export interface Context {
-    url: string,
-    method: string;
+    url: string;
 }

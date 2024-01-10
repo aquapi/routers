@@ -1,0 +1,6 @@
+{
+    "dependencies": {
+        "@medley/router": "latest"
+    },
+    "name": "@medley/router"
+}

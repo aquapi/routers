@@ -5,6 +5,7 @@ import pkg from '../package.json';
 import load from './utils/load';
 import { resolve } from 'path';
 import tests from './tests';
+import validate from './validate';
 
 const
     routersDir = './routers',
@@ -57,8 +58,7 @@ for (name in state.frameworks) {
 // Register to mitata
 for (label in tests) group(label, () => {
     const test = tests[label], context = {
-        method: test.route[0],
-        url: test.path ?? test.route[1]
+        url: test.path ?? test.route[0]
     };
 
     for (name in state.frameworks) {
@@ -66,8 +66,8 @@ for (label in tests) group(label, () => {
 
         // Check
         var result = f(context);
-        if (result !== test.expect)
-            throw new Error(`Router '${name}' failed '${label}':\n\tExpect: ${test.expect}\n\tActual: ${result}`);
+        if (!validate(test.expect, result))
+            throw new Error(`Router '${name}' failed '${label}':\n\tExpect: ${JSON.stringify(test.expect)}\n\tActual: ${JSON.stringify(result)}`);
 
         bench(name, () => f(context));
     }
