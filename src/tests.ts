@@ -1,25 +1,27 @@
 import type { Tests } from './types';
 
 export default {
-    "Root path": {
+    "Simple URL params": {
         expect: 1,
-        route: ['/', [0]]
-    },
-
-    "Long path": {
-        expect: 2,
-        route: ['/areally/long/path/actually', [0, 0]]
+        route: ['/params/:id', [0]],
+        path: '/params/90'
     },
 
     "URL params": {
-        expect: 3,
-        route: ['/user/:name/and/:id', [0, 0, 0]],
-        path: '/user/reve/and/0'
+        expect: 2,
+        route: ['/user/:name/:id', [0, 0]],
+        path: '/user/reve/90'
     },
 
     "Wildcards": {
-        expect: 4,
-        route: ['/info/:project/and/*', [0, 0, 0, 0]],
+        expect: 3,
+        route: ['/info/:project/and/*', [0, 0, 0]],
         path: '/info/stric/and/wildcard'
+    },
+
+    "Complex wildcards": {
+        expect: 4,
+        route: ['/info/:project/:id/*', [0, 0, 0, 0]],
+        path: '/info/stric/0/wildcard'
     }
 } as Tests;

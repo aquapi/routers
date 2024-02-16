@@ -10,7 +10,6 @@ export default {
 
     build: () => {
         const router = createRouter({ routes });
-
-        return c => router.lookup(c.url);
+        return c => router.lookup(c.path);
     }
 } as Exports;

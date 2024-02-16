@@ -1,6 +1,0 @@
-{
-    "dependencies": {
-        "wint-js": "latest"
-    },
-    "name": "wint"
-}

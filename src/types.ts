@@ -8,12 +8,14 @@ export interface Handler {
 export interface Exports {
     register(...route: Route): any;
     build(): Handler;
+    normalizePath?(path: string): string;
 }
 
 export interface State {
     frameworks: Record<string, Exports>;
     dependencies: Record<string, string>;
-    func: Record<string, Handler>;
+    func: Record<string, Handler>,
+    normalizer: Record<string, (path: string) => string>;
 }
 
 export interface Package {
@@ -40,5 +42,5 @@ export interface Test {
 export interface Tests extends Record<string, Test> { }
 
 export interface Context {
-    url: string;
+    path: string;
 }
